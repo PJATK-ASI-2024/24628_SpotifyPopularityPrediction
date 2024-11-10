@@ -50,3 +50,60 @@ Ten zbiór danych dostarcza kompleksowego przeglądu różnych czynników wpływ
 - Publikacja i wdrożenie: przygotowanie modelu do wdrożenia, konteneryzacja.
 - Prezentacja i raport końcowy: przygotowanie do prezentacji wyników.
 
+## Analiza Raportu Profilowania Danych
+
+Dokument ten zawiera kluczowe wnioski z raportu profilowania danych oraz wskazuje obszary, które mogą wymagać poprawy lub głębszej analizy.
+
+---
+
+## Podsumowanie
+
+Raport profilowania ocenia zbiór danych pod kątem jakości danych, w tym braków, wzorców rozkładu oraz potencjalnych anomalii. Analiza ma na celu zidentyfikowanie kluczowych obszarów wymagających uwagi w zbiorze danych.
+
+---
+
+## Podsumowanie Jakości Danych
+
+| Metrika               | Wartość                |
+|-----------------------|------------------------|
+| Całkowita liczba rekordów | *Liczba rekordów*   |
+| Liczba analizowanych cech  | *Liczba cech*     |
+| Brakujące wartości    | *Ogólny procent braków*|
+| Zduplikowane wiersze  | *Procent duplikatów*   |
+| Skewness rozkładów    | *Liczba cech ze skewness*|
+
+### Kluczowe Wnioski
+
+1. **Brakujące Wartości**: W kilku cechach, takich jak *Cech X* i *Cech Y*, występuje znaczny procent brakujących wartości. Możliwe działania obejmują imputację brakujących danych lub dalszą analizę, aby sprawdzić, czy istnieje jakiś wzorzec.
+2. **Zduplikowane Wiersze**: Około *X%* wierszy stanowią duplikaty, co może świadczyć o problemach z wprowadzaniem danych lub łączeniem różnych źródeł.
+3. **Wartości odstające**: Wykryto znaczące wartości odstające w *Cech Z*. Mogą one wpływać na analizy – warto rozważyć dalsze badania lub skalowanie.
+
+---
+
+## Spostrzeżenia według Cech
+
+### Cechy 1: *Nazwa Cechy*
+
+- **Rozkład**: *Opis rozkładu (np. normalny, skośny)*.
+- **Brakujące Wartości**: *X%* wartości jest brakujących.
+- **Wartości odstające**: Wykryte na *wysokich/niskich zakresach*; mogą wymagać dalszego przetwarzania.
+- **Korelacja z innymi Cechami**: *Opis, jeśli dotyczy*.
+
+### Cechy 2: *Nazwa Cechy*
+
+- **Rozkład**: *Opis rozkładu*.
+- **Unikalne Wartości**: *Liczba unikalnych wartości*.
+- **Brakujące Wartości**: *X% wartości brakujących*.
+- **Kluczowe Spostrzeżenia**: 
+  - *Wnioski dotyczące wzorców lub nieregularności*.
+
+---
+
+## Wnioski
+
+Profilowanie danych ujawnia istotne informacje, które są kluczowe dla dalszych analiz. Sugerowane kroki obejmują:
+- **Zarządzanie Brakującymi Wartościami**: Strategie wypełniania brakujących wartości w *Cech X* i *Cech Y*.
+- **Zarządzanie Wartościami Odstającymi**: Podjęcie decyzji dotyczącej obsługi wartości odstających dla *Cech Z*.
+- **Spójność Danych**: Rozważ przegląd procesów, aby ograniczyć występowanie duplikatów.
+
+**Kolejne Kroki**: Przeprowadzenie czyszczenia danych na podstawie powyższych obserwacji oraz rozważenie inżynierii cech, gdzie korelacje mogą sugerować zmienne ukryte.
