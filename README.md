@@ -107,3 +107,15 @@ Profilowanie danych ujawnia istotne informacje, które są kluczowe dla dalszych
 - **Spójność Danych**: Rozważ przegląd procesów, aby ograniczyć występowanie duplikatów.
 
 **Kolejne Kroki**: Przeprowadzenie czyszczenia danych na podstawie powyższych obserwacji oraz rozważenie inżynierii cech, gdzie korelacje mogą sugerować zmienne ukryte.
+
+## Wybór najlepszego modelu przy użyciu narzędzia automl
+Narzędzie **TPOT** wielokrotnie przy różnych parametrach wskazuje RandomForestRegressor jako najlepszy model
+```
+Best pipeline: RandomForestRegressor(StandardScaler(input_matrix), bootstrap=True, max_features=0.45, min_samples_leaf=16, min_samples_split=9, n_estimators=100)
+Najlepszy model sugerowany przez TPOT:
+Pipeline(steps=[('standardscaler', StandardScaler()),
+                ('randomforestregressor',
+                 RandomForestRegressor(max_features=0.45, min_samples_leaf=16,
+                                       min_samples_split=9, random_state=42))])
+Dokładność na zbiorze testowym: -52.797815806700605
+```
