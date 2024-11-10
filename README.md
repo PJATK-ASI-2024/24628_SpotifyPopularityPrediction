@@ -1,54 +1,47 @@
-# Analiza Czynników Wpływających na Wyniki Uczniów
+# Analiza Czynników Wpływających na Choroby Serca
 
 ## Opis projektu
-Celem projektu jest zrozumienie czynników, które mogą mieć wpływ na wyniki uczniów. Analiza obejmuje zbadanie zmiennych, takich jak czas poświęcony na naukę, obecność na zajęciach oraz wsparcie rodziny.
+Celem projektu jest zrozumienie czynników, które mogą mieć wpływ na wystąpienie choroby serca. Analiza obejmuje zbadanie zmiennych, takich jak wiek, płeć, ból w klatce piersiowej, ciśnienie krwi, poziom cholesterolu, czy cukrzyca, a także inne zmienne, które mogą mieć wpływ na zdrowie serca.
 
 ## Źródło danych
-- **Zbiór danych:** [Student Performance Factors](https://www.kaggle.com/datasets/lainguyn123/student-performance-factors)
-- **Charakterystyka:** Dane dotyczące wyników uczniów wraz z czynnikami mogącymi mieć na nie wpływ.
+- **Zbiór danych:** [Heart Disease Dataset](https://www.kaggle.com/datasets/ronitf/heart-disease-uci)
+- **Charakterystyka:** Zbiór danych dotyczy pacjentów z ryzykiem chorób serca i zawiera różne czynniki zdrowotne, które mogą wskazywać na obecność lub brak choroby serca.
 
 ## Dane
-Ten zbiór danych dostarcza kompleksowego przeglądu różnych czynników wpływających na wyniki uczniów na egzaminach. Zawiera informacje dotyczące nawyków związanych z nauką, frekwencji, zaangażowania rodziców oraz innych aspektów wpływających na sukces akademicki.
+Zbiór danych zawiera informacje o pacjentach, którzy byli badani w związku z chorobą serca. Celem jest wykrycie, które czynniki mają największy wpływ na wystąpienie choroby serca.
 
 ## Opis Kolumn
 
-| Atrybut                   | Opis                                                                                         |
-|---------------------------|----------------------------------------------------------------------------------------------|
-| **Hours_Studied**         | Liczba godzin poświęconych na naukę tygodniowo.                                              |
-| **Attendance**            | Procent obecności na zajęciach.                                                              |
-| **Parental_Involvement**  | Poziom zaangażowania rodziców w edukację ucznia (Niski, Średni, Wysoki).                     |
-| **Access_to_Resources**   | Dostępność zasobów edukacyjnych (Niska, Średnia, Wysoka).                                    |
-| **Extracurricular_Activities** | Udział w zajęciach pozalekcyjnych (Tak, Nie).                                          |
-| **Sleep_Hours**           | Średnia liczba godzin snu na noc.                                                            |
-| **Previous_Scores**       | Wyniki z poprzednich egzaminów.                                                              |
-| **Motivation_Level**      | Poziom motywacji ucznia (Niski, Średni, Wysoki).                                             |
-| **Internet_Access**       | Dostępność dostępu do Internetu (Tak, Nie).                                                  |
-| **Tutoring_Sessions**     | Liczba sesji korepetycji w miesiącu.                                                         |
-| **Family_Income**         | Poziom dochodu rodziny (Niski, Średni, Wysoki).                                              |
-| **Teacher_Quality**       | Jakość nauczycieli (Niska, Średnia, Wysoka).                                                 |
-| **School_Type**           | Typ szkoły, do której uczęszcza uczeń (Publiczna, Prywatna).                                 |
-| **Peer_Influence**        | Wpływ rówieśników na wyniki akademickie (Pozytywny, Neutralny, Negatywny).                   |
-| **Physical_Activity**     | Średnia liczba godzin aktywności fizycznej tygodniowo.                                       |
-| **Learning_Disabilities** | Obecność trudności w uczeniu się (Tak, Nie).                                                 |
-| **Parental_Education_Level** | Najwyższy poziom wykształcenia rodziców (Liceum, Studia, Studia podyplomowe).            |
-| **Distance_from_Home**    | Odległość od domu do szkoły (Blisko, Średnia, Daleko).                                       |
-| **Gender**                | Płeć ucznia (Mężczyzna, Kobieta).                                                            |
-| **Exam_Score**            | Końcowy wynik na egzaminie.                                                                  |
-
+| Atrybut                         | Opis                                                                                             |
+|----------------------------------|--------------------------------------------------------------------------------------------------|
+| **age**                          | Wiek pacjenta (w latach).                                                                        |
+| **sex**                          | Płeć pacjenta (1 = mężczyzna, 0 = kobieta).                                                      |
+| **chest pain type**              | Rodzaj bólu w klatce piersiowej (0 = brak, 1 = ból typowy, 2 = ból nietypowy, 3 = brak bólu).      |
+| **resting blood pressure**       | Ciśnienie krwi w spoczynku (mm Hg).                                                              |
+| **serum cholestoral**            | Poziom cholesterolu w surowicy (mg/dl).                                                          |
+| **fasting blood sugar**          | Poziom cukru na czczo (1 = większy niż 120 mg/dl, 0 = mniejszy lub równy 120 mg/dl).              |
+| **resting electrocardiographic results** | Wyniki EKG w spoczynku (0 = brak, 1 = nieprawidłowe, 2 = prawidłowe).                            |
+| **maximum heart rate achieved**  | Maksymalna osiągnięta częstość akcji serca (uderzenia na minutę).                                |
+| **exercise induced angina**      | Angina wywołana wysiłkiem (1 = występuje, 0 = nie występuje).                                    |
+| **oldpeak**                       | Depresja ST spowodowana wysiłkiem w porównaniu z odpoczynkiem.                                   |
+| **slope of the peak exercise ST segment** | Nachylenie szczytowego segmentu ST podczas wysiłku (1 = łagodny, 2 = średni, 3 = ostry).         |
+| **number of major vessels**      | Liczba głównych naczyń krwionośnych (0-3), które były widoczne w badaniach fluoroskopowych.        |
+| **thal**                          | Defekt w badaniu serca (0 = normalny, 1 = stały defekt, 2 = odwracalny defekt).                   |
+| **target**                        | Obecność choroby serca (1 = choroba, 0 = brak choroby).                                          |
 
 ## Cele projektu
-1. Zidentyfikowanie kluczowych czynników wpływających na wyniki uczniów.
-2. Budowa modelu predykcyjnego do przewidywania wyników uczniów.
-3. Wyciągnięcie wniosków przydatnych dla instytucji edukacyjnych.
+1. Zidentyfikowanie kluczowych czynników wpływających na choroby serca.
+2. Budowa modelu predykcyjnego do przewidywania ryzyka chorób serca.
+3. Wyciągnięcie wniosków przydatnych dla instytucji zdrowia publicznego.
 
 ## Struktura projektu
-- Przetwarzanie danych: pobieranie, obróbka i przygotowanie danych.
-- Eksploracja i analiza danych: EDA, wykrywanie braków, wstępne przetwarzanie.
-- Trenowanie modelu: dobór i dostosowanie modelu ML do wybranego problemu.
-- Walidacja i testowanie: walidacja modelu na danych testowych, monitorowanie wyników.
-- Dokształcanie modelu: dalsze trenowanie na nowych danych.
-- Publikacja i wdrożenie: przygotowanie modelu do wdrożenia, konteneryzacja.
-- Prezentacja i raport końcowy: przygotowanie do prezentacji wyników.
+- **Przetwarzanie danych**: Pobieranie, obróbka i przygotowanie danych.
+- **Eksploracja i analiza danych**: EDA (analiza eksploracyjna danych), wykrywanie braków, wstępne przetwarzanie.
+- **Trenowanie modelu**: Dobór i dostosowanie modelu ML do wybranego problemu.
+- **Walidacja i testowanie**: Walidacja modelu na danych testowych, monitorowanie wyników.
+- **Dokształcanie modelu**: Dalsze trenowanie na nowych danych.
+- **Publikacja i wdrożenie**: Przygotowanie modelu do wdrożenia, konteneryzacja.
+- **Prezentacja i raport końcowy**: Przygotowanie do prezentacji wyników.
 
 ## Analiza Raportu Profilowania Danych
 
@@ -56,66 +49,7 @@ Dokument ten zawiera kluczowe wnioski z raportu profilowania danych oraz wskazuj
 
 ---
 
-## Podsumowanie
-
-Raport profilowania ocenia zbiór danych pod kątem jakości danych, w tym braków, wzorców rozkładu oraz potencjalnych anomalii. Analiza ma na celu zidentyfikowanie kluczowych obszarów wymagających uwagi w zbiorze danych.
-
----
-
-## Podsumowanie Jakości Danych
-
-| Metrika               | Wartość                |
-|-----------------------|------------------------|
-| Całkowita liczba rekordów | *Liczba rekordów*   |
-| Liczba analizowanych cech  | *Liczba cech*     |
-| Brakujące wartości    | *Ogólny procent braków*|
-| Zduplikowane wiersze  | *Procent duplikatów*   |
-| Skewness rozkładów    | *Liczba cech ze skewness*|
-
-### Kluczowe Wnioski
-
-1. **Brakujące Wartości**: W kilku cechach, takich jak *Cech X* i *Cech Y*, występuje znaczny procent brakujących wartości. Możliwe działania obejmują imputację brakujących danych lub dalszą analizę, aby sprawdzić, czy istnieje jakiś wzorzec.
-2. **Zduplikowane Wiersze**: Około *X%* wierszy stanowią duplikaty, co może świadczyć o problemach z wprowadzaniem danych lub łączeniem różnych źródeł.
-3. **Wartości odstające**: Wykryto znaczące wartości odstające w *Cech Z*. Mogą one wpływać na analizy – warto rozważyć dalsze badania lub skalowanie.
-
----
-
-## Spostrzeżenia według Cech
-
-### Cechy 1: *Nazwa Cechy*
-
-- **Rozkład**: *Opis rozkładu (np. normalny, skośny)*.
-- **Brakujące Wartości**: *X%* wartości jest brakujących.
-- **Wartości odstające**: Wykryte na *wysokich/niskich zakresach*; mogą wymagać dalszego przetwarzania.
-- **Korelacja z innymi Cechami**: *Opis, jeśli dotyczy*.
-
-### Cechy 2: *Nazwa Cechy*
-
-- **Rozkład**: *Opis rozkładu*.
-- **Unikalne Wartości**: *Liczba unikalnych wartości*.
-- **Brakujące Wartości**: *X% wartości brakujących*.
-- **Kluczowe Spostrzeżenia**: 
-  - *Wnioski dotyczące wzorców lub nieregularności*.
-
----
-
-## Wnioski
-
-Profilowanie danych ujawnia istotne informacje, które są kluczowe dla dalszych analiz. Sugerowane kroki obejmują:
-- **Zarządzanie Brakującymi Wartościami**: Strategie wypełniania brakujących wartości w *Cech X* i *Cech Y*.
-- **Zarządzanie Wartościami Odstającymi**: Podjęcie decyzji dotyczącej obsługi wartości odstających dla *Cech Z*.
-- **Spójność Danych**: Rozważ przegląd procesów, aby ograniczyć występowanie duplikatów.
-
-**Kolejne Kroki**: Przeprowadzenie czyszczenia danych na podstawie powyższych obserwacji oraz rozważenie inżynierii cech, gdzie korelacje mogą sugerować zmienne ukryte.
-
 ## Wybór najlepszego modelu przy użyciu narzędzia automl
-Narzędzie **TPOT** wielokrotnie przy różnych parametrach wskazuje RandomForestRegressor jako najlepszy model
-```
-Best pipeline: RandomForestRegressor(StandardScaler(input_matrix), bootstrap=True, max_features=0.45, min_samples_leaf=16, min_samples_split=9, n_estimators=100)
-Najlepszy model sugerowany przez TPOT:
-Pipeline(steps=[('standardscaler', StandardScaler()),
-                ('randomforestregressor',
-                 RandomForestRegressor(max_features=0.45, min_samples_leaf=16,
-                                       min_samples_split=9, random_state=42))])
-Dokładność na zbiorze testowym: -52.797815806700605
-```
+
+Narzędzie **TPOT** wielokrotnie przy różnych parametrach wskazuje **RandomForestClassifier** jako najlepszy model.
+
