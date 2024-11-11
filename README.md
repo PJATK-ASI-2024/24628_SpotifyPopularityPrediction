@@ -43,50 +43,43 @@ Zbiór danych zawiera informacje o pacjentach, którzy byli badani w kontekście
 
 ---
 
-## Wybór najlepszego modelu przy użyciu narzędzia automl
+# Wybór najlepszego modelu przy użyciu AutoML
 
 Niniejszy dokument przedstawia analizę i porównanie trzech modeli uczenia maszynowego wygenerowanych podczas etapu wstępnej ewaluacji. Każdy model został oceniony na podstawie wyników walidacji krzyżowej, a jeden z nich został zarekomendowany do kolejnych etapów projektu.
 
 ## Rekomendowane Modele
 
-### Model 1: LinearSVC
+### Model 1: KNeighborsClassifier
 - **Konfiguracja**:
-  - `C=20.0`
-  - `dual=False`
-  - `loss=squared_hinge`
-  - `penalty=l2`
-  - `tol=0.01`
-- **Wynik Walidacji Krzyżowej**: 0.843
-- **Opis**: Linear Support Vector Classification (LinearSVC) to model liniowy dobrze przystosowany do zadań klasyfikacji na dużą skalę. W tej konfiguracji wykorzystuje funkcję straty "squared hinge" i karę L2, co zapewnia odporność na przeuczenie przy wybranej wartości `C`. 
-- **Uzasadnienie**: LinearSVC osiągnął najwyższy wynik walidacji krzyżowej spośród ocenianych modeli. Zapewnia równowagę między prostotą modelu a jego wydajnością klasyfikacyjną, co czyni go dobrym kandydatem do dalszych prac.
+  - `n_neighbors=36`
+  - `p=2` (odległość euklidesowa)
+  - `weights=uniform`
+- **Wynik Walidacji Krzyżowej**: 0.863
+- **Opis**: KNeighborsClassifier jest modelem opartym na bliskości sąsiadów, co sprawia, że dobrze sprawdza się przy danych z wyraźnymi klastrami. Ten model uwzględnia 36 najbliższych sąsiadów podczas klasyfikacji nowego punktu.
 
 ### Model 2: XGBClassifier (Konfiguracja A)
 - **Konfiguracja**:
-  - `learning_rate=0.1`
-  - `max_depth=2`
-  - `min_child_weight=4`
+  - `learning_rate=0.01`
+  - `max_depth=7`
+  - `min_child_weight=3`
   - `n_estimators=100`
-  - `subsample=0.70`
+  - `subsample=0.90`
   - `verbosity=0`
-- **Wynik Walidacji Krzyżowej**: 0.826
-- **Opis**: XGBClassifier to implementacja algorytmu gradient boosting. Przy płytkiej głębokości drzew i niższej wartości `subsample` model ten jest zaprojektowany do lepszej generalizacji poprzez zmniejszenie ryzyka przeuczenia. XGBoost jest znany z dobrze radzenia sobie z bardziej złożonymi wzorcami, choć może wymagać większej ilości zasobów obliczeniowych.
-- **Uzasadnienie**: Konfiguracja A modelu XGBClassifier oferuje wysoką wydajność, choć nieco niższą niż LinearSVC. Zastosowanie subsamplingu pozwala unikać przeuczenia.
+- **Wynik Walidacji Krzyżowej**: 0.863
+- **Opis**: XGBClassifier stosuje gradient boosting, co pozwala mu wychwytywać złożone relacje między danymi. Przy niskim `learning_rate` model jest mniej narażony na przeuczenie i zapewnia stabilność przy wyższym `subsample`.
 
 ### Model 3: XGBClassifier (Konfiguracja B)
 - **Konfiguracja**:
-  - `learning_rate=0.1`
-  - `max_depth=2`
-  - `min_child_weight=4`
+  - `VarianceThreshold__threshold=0.95` (filtracja niskiej wariancji)
+  - `learning_rate=0.001`
+  - `max_depth=10`
+  - `min_child_weight=17`
   - `n_estimators=100`
-  - `subsample=0.95`
+  - `subsample=1.0`
   - `verbosity=0`
-- **Wynik Walidacji Krzyżowej**: 0.826
-- **Opis**: W tej konfiguracji model XGBClassifier stosuje wyższą wartość `subsample` (0.95), pozwalając na uczenie się na większej części danych w każdej iteracji. Podobnie jak w konfiguracji A, model jest zaprojektowany tak, aby ograniczać przeuczenie przy jednoczesnym uchwyceniu bardziej złożonych relacji w danych.
-- **Uzasadnienie**: Wyniki walidacji krzyżowej są zbliżone do konfiguracji A, jednak różnica jest marginalna, co nie wskazuje na znaczącą przewagę.
+- **Wynik Walidacji Krzyżowej**: 0.863
+- **Opis**: W tej konfiguracji model wykorzystuje selekcję cech o wysokiej wariancji, co zmniejsza ryzyko nadmiarowości i pozwala skupić się na najbardziej istotnych danych.
 
-## Wybrany Model
+## Wybór Najlepszego Modelu
 
-Model **LinearSVC** został wybrany do dalszych etapów projektu ze względu na najwyższy wynik walidacji krzyżowej i efektywność obliczeniową.
-
-
-
+Po dokładnej analizie wyników walidacji krzyżowej oraz specyfiki działania każdego modelu, **Model KNeighborsClassifier** został wybrany jako najlepszy kandydat do dalszych etapów projektu. Model ten osiągnął identyczny wynik jak konfiguracje XGBClassifier, ale charakteryzuje się prostszą strukturą i mniejszym zapotrzebowaniem na zasoby obliczeniowe.
