@@ -1,85 +1,80 @@
-# Analiza Czynników Wpływających na Udar
+# **Analiza Popularności Utworów Muzycznych**
 
-## Opis projektu
-Celem projektu jest zbadanie, które czynniki zdrowotne oraz demograficzne mają wpływ na wystąpienie udaru. Analiza obejmuje zmienne takie jak wiek, płeć, poziom cukru we krwi, wskaźnik BMI, nadciśnienie, oraz inne zmienne, które mogą mieć wpływ na ryzyko wystąpienia udaru.
+## **Opis Projektu**
+Celem projektu jest zbadanie, które czynniki mają wpływ na popularność utworów muzycznych. Analiza obejmuje zmienne takie jak gatunek muzyczny, artyści, album, długość utworu, explicit (czy zawiera treści dla dorosłych) oraz inne zmienne, które mogą wpływać na popularność.
 
-## Źródło danych
-- **Zbiór danych:** [Stroke Prediction Dataset](https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset)
-- **Charakterystyka:** Zbiór danych zawiera informacje na temat pacjentów, uwzględniając czynniki zdrowotne i styl życia, które mogą wpływać na ryzyko udaru.
+## **Źródło Danych**
+- **Zbiór danych:** [Spotify Dataset]([https://www.kaggle.com/datasets](https://www.kaggle.com/datasets/ambaliyagati/spotify-dataset-for-playing-around-with-sql))
+- **Charakterystyka:** Zbiór danych zawiera informacje o utworach muzycznych na platformie Spotify, w tym gatunki muzyczne, artyści, albumy, czas trwania utworów, oraz ich popularność.
 
-## Dane
-Zbiór danych zawiera informacje o pacjentach, którzy byli badani w kontekście udaru. Celem analizy jest zidentyfikowanie czynników zwiększających ryzyko udaru oraz stworzenie modelu predykcyjnego.
+## **Dane**
+Zbiór danych zawiera informacje o utworach muzycznych, takie jak: nazwa utworu, gatunek, artyści, album, czas trwania, popularność oraz czy utwór zawiera treści explicit. Celem analizy jest stworzenie modelu predykcyjnego, który przewidzi popularność utworu na podstawie tych zmiennych.
 
-## Opis Kolumn
+## **Opis Kolumn**
 
 | Atrybut             | Opis                                                                                         |
 |---------------------|----------------------------------------------------------------------------------------------|
-| **id**              | Unikalny identyfikator pacjenta.                                                             |
-| **gender**          | Płeć pacjenta (Male/Female).                                                                 |
-| **age**             | Wiek pacjenta (w latach).                                                                    |
-| **hypertension**    | Nadciśnienie (1 = obecne, 0 = brak).                                                         |
-| **heart_disease**   | Obecność chorób serca (1 = obecne, 0 = brak).                                                |
-| **ever_married**    | Czy pacjent był kiedykolwiek żonaty/zamężny (Yes/No).                                        |
-| **work_type**       | Typ pracy pacjenta (Private, Self-employed, Govt job, Never worked, Children).               |
-| **Residence_type**  | Typ miejsca zamieszkania (Urban/Rural).                                                      |
-| **avg_glucose_level** | Średni poziom glukozy we krwi.                                                             |
-| **bmi**             | Wskaźnik masy ciała pacjenta (BMI).                                                          |
-| **smoking_status**  | Status palenia (formerly smoked, smokes, never smoked, Unknown).                             |
-| **stroke**          | Wystąpienie udaru (1 = udar, 0 = brak udaru).                                                |
+| **id**              | Unikalny identyfikator utworu.                                                               |
+| **name**            | Nazwa utworu.                                                                                 |
+| **genre**           | Gatunek muzyczny (np. Acoustic, Pop, Rock).                                                  |
+| **artists**         | Artyści wykonujący utwór (np. Billy Raffoul).                                                |
+| **album**           | Nazwa albumu, z którego pochodzi utwór.                                                      |
+| **popularity**      | Popularność utworu (na skali od 0 do 100, gdzie 100 to najwyższa popularność).                |
+| **duration_ms**     | Czas trwania utworu w milisekundach.                                                          |
+| **explicit**        | Informacja, czy utwór zawiera treści dla dorosłych (True/False).                             |
 
-## Cele projektu
-1. Zidentyfikowanie kluczowych czynników wpływających na wystąpienie udaru.
-2. Budowa modelu predykcyjnego, który przewiduje ryzyko udaru na podstawie danych pacjentów.
-3. Wyciągnięcie wniosków przydatnych dla instytucji zdrowia publicznego i praktyki medycznej.
+## **Cele Projektu**
+1. Zidentyfikowanie czynników wpływających na popularność utworów muzycznych.
+2. Stworzenie modelu predykcyjnego, który przewidzi popularność utworu na podstawie jego cech.
+3. Analiza wpływu różnych czynników (takich jak gatunek, artyści, długość utworu) na popularność.
 
-## Struktura projektu
-- **Przetwarzanie danych**: Pobieranie, obróbka i przygotowanie danych.
-- **Eksploracja i analiza danych**: Analiza eksploracyjna (EDA), wykrywanie braków, przetwarzanie wstępne.
-- **Trenowanie modelu**: Dobór i trenowanie modelu ML dopasowanego do problemu predykcji udaru.
-- **Walidacja i testowanie**: Walidacja modelu na danych testowych, monitorowanie wyników oraz metryk.
-- **Dokształcanie modelu**: Trenowanie na dodatkowych danych dla uzyskania lepszej dokładności.
-- **Publikacja i wdrożenie**: Przygotowanie modelu do wdrożenia, konteneryzacja lub inne sposoby wdrożenia.
-- **Prezentacja i raport końcowy**: Przygotowanie wyników i raportów końcowych.
+## **Struktura Projektu**
+- **Przetwarzanie Danych**: Pobieranie, czyszczenie i przygotowanie danych do analizy (np. kodowanie zmiennych kategorycznych).
+- **Eksploracja i Analiza Danych (EDA)**: Analiza wstępna danych, wykrywanie braków, analiza zależności pomiędzy zmiennymi.
+- **Budowa Modelu**: Dobór i trenowanie odpowiedniego modelu ML (np. regresja, lasy losowe, XGBoost) do przewidywania popularności.
+- **Walidacja Modelu**: Testowanie modelu na danych testowych, ocena skuteczności modelu przy użyciu odpowiednich metryk (np. RMSE, R^2).
+- **Optymalizacja Modelu**: Dostosowanie parametrów modelu w celu poprawy wyników (np. Grid Search, Random Search).
+- **Prezentacja Wyników**: Wizualizacja wyników analizy, zależności między zmiennymi oraz ocena jakości modelu.
+- **Raport Końcowy**: Przygotowanie dokumentacji i raportu końcowego, w tym wniosków oraz rekomendacji.
 
 ---
 
-# Wybór najlepszego modelu przy użyciu AutoML
+# **Wybór Najlepszego Modelu przy Użyciu AutoML**
 
 Niniejszy dokument przedstawia analizę i porównanie trzech modeli uczenia maszynowego wygenerowanych podczas etapu wstępnej ewaluacji. Każdy model został oceniony na podstawie wyników walidacji krzyżowej, a jeden z nich został zarekomendowany do kolejnych etapów projektu.
 
-## Rekomendowane Modele
+## **Rekomendowane Modele**
 
-### Model 1: KNeighborsClassifier
+### **Model 1: RandomForestRegressor (Konfiguracja A)**
 - **Konfiguracja**:
-  - `n_neighbors=36`
-  - `p=2` (odległość euklidesowa)
-  - `weights=uniform`
-- **Wynik Walidacji Krzyżowej**: 0.863
-- **Opis**: KNeighborsClassifier jest modelem opartym na bliskości sąsiadów, co sprawia, że dobrze sprawdza się przy danych z wyraźnymi klastrami. Ten model uwzględnia 36 najbliższych sąsiadów podczas klasyfikacji nowego punktu.
-
-### Model 2: XGBClassifier (Konfiguracja A)
-- **Konfiguracja**:
-  - `learning_rate=0.01`
-  - `max_depth=7`
-  - `min_child_weight=3`
+  - `bootstrap=True`
+  - `max_features=0.7500000000000001`
+  - `min_samples_leaf=3`
+  - `min_samples_split=14`
   - `n_estimators=100`
-  - `subsample=0.90`
-  - `verbosity=0`
-- **Wynik Walidacji Krzyżowej**: 0.863
-- **Opis**: XGBClassifier stosuje gradient boosting, co pozwala mu wychwytywać złożone relacje między danymi. Przy niskim `learning_rate` model jest mniej narażony na przeuczenie i zapewnia stabilność przy wyższym `subsample`.
+- **Wynik Walidacji Krzyżowej**: -0.6617731797032844
+- **Opis**: RandomForestRegressor jest modelem opartym na wielu drzewach decyzyjnych, który skutecznie radzi sobie z predykcją dla danych z dużą liczbą cech. Model ten uzyskał najlepszy wynik w analizie, jednak jego wynik walidacji wskazuje na potrzebę dalszej optymalizacji.
 
-### Model 3: XGBClassifier (Konfiguracja B)
+### **Model 2: RandomForestRegressor (Konfiguracja B)**
 - **Konfiguracja**:
-  - `VarianceThreshold__threshold=0.95` (filtracja niskiej wariancji)
-  - `learning_rate=0.001`
-  - `max_depth=10`
-  - `min_child_weight=17`
+  - `bootstrap=False`
+  - `max_features=0.4`
+  - `min_samples_leaf=6`
+  - `min_samples_split=18`
   - `n_estimators=100`
-  - `subsample=1.0`
-  - `verbosity=0`
-- **Wynik Walidacji Krzyżowej**: 0.863
-- **Opis**: W tej konfiguracji model wykorzystuje selekcję cech o wysokiej wariancji, co zmniejsza ryzyko nadmiarowości i pozwala skupić się na najbardziej istotnych danych.
+- **Wynik Walidacji Krzyżowej**: -0.6828323501950834
+- **Opis**: Ta konfiguracja RandomForestRegressor zmienia parametry, takie jak `max_features` i `min_samples_leaf`, w celu dostosowania modelu do specyfiki danych. Wynik jest nieco gorszy od Modelu 1, ale nadal ma duży potencjał, aby uzyskać lepszą wydajność po dalszej optymalizacji.
 
-## Wybór Najlepszego Modelu
+### **Model 3: RandomForestRegressor (Konfiguracja C)**
+- **Konfiguracja**:
+  - `bootstrap=True`
+  - `max_features=0.7500000000000001`
+  - `min_samples_leaf=7`
+  - `min_samples_split=9`
+  - `n_estimators=100`
+- **Wynik Walidacji Krzyżowej**: -0.6842742297828467
+- **Opis**: Ta konfiguracja modelu RandomForestRegressor ma wyższe wartości dla `min_samples_leaf` i `min_samples_split`, co może prowadzić do prostszych drzew decyzyjnych. Jednak uzyskany wynik walidacji jest gorszy w porównaniu do Modelu 1, co sugeruje, że ta konfiguracja może wymagać dalszej optymalizacji.
 
-Po dokładnej analizie wyników walidacji krzyżowej oraz specyfiki działania każdego modelu, **Model KNeighborsClassifier** został wybrany jako najlepszy kandydat do dalszych etapów projektu. Model ten osiągnął identyczny wynik jak konfiguracje XGBClassifier, ale charakteryzuje się prostszą strukturą i mniejszym zapotrzebowaniem na zasoby obliczeniowe.
+## **Wybór Najlepszego Modelu**
+
+Po dokładnej analizie wyników walidacji krzyżowej oraz specyfiki działania każdego modelu, **Model 1: RandomForestRegressor (Konfiguracja A)** został wybrany jako najlepszy kandydat do dalszych etapów projektu. Model ten osiągnął najlepszy wynik walidacji krzyżowej i zapewnia dobrą równowagę między złożonością a efektywnością.
