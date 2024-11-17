@@ -1,5 +1,8 @@
 scikit-learn
 pandas
 numpy
-
+google-api-python-client
+google-auth
+google-auth-httplib2
+google-auth-oauthlib
 apache-airflow~=2.7.3
