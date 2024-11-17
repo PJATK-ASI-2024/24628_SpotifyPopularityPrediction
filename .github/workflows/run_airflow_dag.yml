@@ -1,0 +1,50 @@
+name: Run Airflow DAG
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run_airflow_dag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Docker Compose
+        run: |
+          curl -L "https://github.com/docker/compose/releases/download/$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r .tag_name)/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          chmod +x /usr/local/bin/docker-compose
+
+      - name: Set up Docker Compose
+        run: |
+          docker-compose up -d
+          echo "Waiting for Airflow Webserver to start..."
+          timeout=120 # Extended wait time to 2 minutes
+          while ! curl -s http://localhost:8080 | grep -q "Log In"; do
+            if [ $timeout -le 0 ]; then
+              echo "Timeout waiting for Airflow to start"
+              exit 1  # Exit with error code if Airflow doesn't start
+            fi
+            echo "Still waiting for Airflow..."
+            sleep 10
+            timeout=$((timeout - 10))
+          done
+          echo "Airflow Webserver is up and running."
+
+      - name: Trigger Airflow DAG
+        run: |
+          response=$(curl -s -o /dev/null -w "%{http_code}" -X POST "http://localhost:8080/api/v1/dags/check_duplicates_dag/dagRuns" \
+          -H "Content-Type: application/json" \
+          --user "admin:admin" \
+          -d '{"conf": {}}')
+          if [ "$response" -ne 200 ]; then
+            echo "Failed to trigger DAG. HTTP response code: $response"
+            exit 1
+          fi
+          echo "DAG triggered successfully."
+
+      - name: Shut down Docker Compose
+        run: docker-compose down
