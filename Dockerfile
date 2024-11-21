@@ -6,3 +6,5 @@ USER root
 RUN apt-get update
 RUN apt-get install wget
 RUN mkdir -p /opt/airflow/data
+RUN mkdir -p /opt/airflow/models
+RUN mkdir -p /opt/airflow/reports/
