@@ -59,6 +59,17 @@ def download_file_from_drive():
 @task
 def clean_data(df: pd.DataFrame):
     """Clean data by handling missing values, duplicates, and scaling features."""
+    df = df.drop(columns=["id", "name"])
+
+    df["explicit"] = df["explicit"].astype(int)
+
+    df = pd.get_dummies(df, columns=["genre"], drop_first=True)
+
+    df["artists_count"] = df["artists"].apply(lambda x: len(x.split(", ")))
+    df = df.drop(columns=["artists"])
+
+    # Label encode `album`
+    df["album"] = df["album"].astype("category").cat.codes
     df.dropna(inplace=True)
 
     df.drop_duplicates(inplace=True)
