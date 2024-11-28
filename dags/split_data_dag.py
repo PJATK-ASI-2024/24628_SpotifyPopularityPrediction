@@ -102,7 +102,7 @@ def save_to_drive(paths: dict):
         raise RuntimeError(f"An error occurred while uploading files: {error}")
 
 @dag(
-    dag_id="first_dag",
+    dag_id="split_data",
     schedule=None,
     start_date=datetime(2023, 1, 1),
     catchup=False,

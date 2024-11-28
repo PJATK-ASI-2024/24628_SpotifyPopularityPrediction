@@ -118,7 +118,7 @@ def save_to_drive(df: pd.DataFrame):
 
 
 @dag(
-    dag_id="second_dag",
+    dag_id="data_processing_dag",
     schedule=None,
     start_date=datetime(2023, 1, 1),
     catchup=False,

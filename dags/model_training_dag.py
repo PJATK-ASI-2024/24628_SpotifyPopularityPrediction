@@ -66,34 +66,26 @@ def ml_training_dag():
     @task
     def train_ml_model(df: pd.DataFrame):
         """Train and save an ML regression model."""
-        # Separate features and target
-        X = df.drop(columns=["popularity"])  # Features
-        y = df["popularity"]  # Target
+        X = df.drop(columns=["popularity"])
+        y = df["popularity"]
 
-        # Split the data
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
-        # Train regression model
         model = LinearRegression()
         model.fit(X_train, y_train)
 
-        # Predict on test set
         y_pred = model.predict(X_test)
 
-        # Evaluate the model
         mse = mean_squared_error(y_test, y_pred)
         mae = mean_absolute_error(y_test, y_pred)
         r2 = r2_score(y_test, y_pred)
 
-        # Log metrics
         print(f"Mean Squared Error (MSE): {mse}")
         print(f"Mean Absolute Error (MAE): {mae}")
         print(f"R-squared (R2): {r2}")
 
-        # Save the model
         joblib.dump(model, "/opt/airflow/models/linear_regression_model.pkl")
 
-        # Save metrics to a report file
         with open("/opt/airflow/reports/evaluation_report.txt", "w") as f:
             f.write(f"Mean Squared Error: {mse}\n")
             f.write(f"Mean Absolute Error: {mae}\n")
@@ -133,7 +125,6 @@ def ml_training_dag():
         except HttpError as error:
             raise RuntimeError(f"An error occurred while uploading files: {error}")
 
-    # Task flow
     cleaned_data = download_cleaned_data()
     ml_outputs = train_ml_model(cleaned_data)
     upload_files_to_drive(ml_outputs)

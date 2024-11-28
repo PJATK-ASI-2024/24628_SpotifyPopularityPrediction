@@ -3,7 +3,7 @@ name: Run Airflow DAG
 on:
   push:
     branches:
-      - main
+      - Lab4
 
 jobs:
   run_airflow_dag:
