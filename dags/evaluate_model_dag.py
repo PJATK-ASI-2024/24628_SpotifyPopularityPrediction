@@ -16,7 +16,7 @@ SCOPES = ['https://www.googleapis.com/auth/drive']
 MODEL_PATH = "/opt/airflow/models/linear_regression_model.pkl"
 FOLDER_ID = '1Y4ZjDn5cJDPDxNve0_vV3d32YU-rUhf_'
 FILE_NAME = 'data_30.csv'
-CRITICAL_THRESHOLD = 0.80
+CRITICAL_THRESHOLD = 0.50
 
 def create_google_drive_service():
     credentials = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
@@ -95,15 +95,9 @@ def model_quality_monitoring_dag():
         return r2
 
     @task
-    def check_model_tests():
-        """Check if model tests pass."""
-        tests_pass = True
-        return tests_pass
-
-    @task
     def send_warning_email(r2: float, tests_pass: bool):
         """Send an email warning if conditions are not met."""
-        if r2 > CRITICAL_THRESHOLD or not tests_pass:
+        if r2 > CRITICAL_THRESHOLD:
             email = EmailOperator(
                 task_id='send_email',
                 to='s24628@pjwstk.edu.pl',
