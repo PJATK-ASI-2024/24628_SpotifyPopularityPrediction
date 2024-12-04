@@ -1,0 +1,9 @@
+Flask
+Werkzeug
+joblib
+pandas
+numpy
+google-api-python-client
+google-auth
+scikit-learn
+dill
